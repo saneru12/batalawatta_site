@@ -4,7 +4,7 @@
    - CRUD: Plants, Orders, Inquiries, Reviews
 */
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://batalawattasite-production.up.railway.app/api";
 // NOTE: Use sessionStorage (NOT localStorage) so the admin session does NOT survive
 // browser/tab close. This satisfies the requirement: close browser & reopen => logged out.
 const LS_KEY = "batalawatta_admin_token";

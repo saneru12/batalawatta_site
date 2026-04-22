@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://batalawattasite-production.up.railway.app/api';
 const TOKEN_KEY = 'bpn_delivery_staff_token';
 const PROFILE_KEY = 'bpn_delivery_staff_profile';
 

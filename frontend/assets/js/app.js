@@ -1,5 +1,5 @@
 // Shared config
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://batalawattasite-production.up.railway.app/api';
 
 // Fallback WhatsApp number. Checkout can override this with the admin-configured number.
 const DEFAULT_WHATSAPP_NUMBER = '94752515517';
