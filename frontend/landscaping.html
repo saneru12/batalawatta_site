@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architect-Led Landscaping | Batalawatta Plant Nursery</title>
+  <link rel="stylesheet" href="assets/css/style-enhanced.css">
+  <meta name="description" content="Architect-led garden landscaping packages by Batalawatta Plant Nursery. View process, compare packages, and request a quotation online." />
+  <style>
+    .page-hero{
+      padding: 26px 0 14px;
+    }
+    .hero-shell{
+      background: linear-gradient(135deg, rgba(46,229,157,.12), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.22);
+    }
+    .hero-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid rgba(46,229,157,.24);
+      background: rgba(46,229,157,.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: .88rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    .hero-copy p{
+      margin: 0;
+      max-width: 760px;
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .hero-point{
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      padding: 14px;
+    }
+    .hero-point strong{
+      display:block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+    .hero-panel{
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,.05);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .hero-panel h3{
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .hero-panel ul{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(234,247,241,.88);
+    }
+    .hero-panel li{ margin: 8px 0; }
+    .hero-cta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .trust-row,
+    .process-grid,
+    .promise-grid,
+    .packages-grid{
+      display:grid;
+      gap: 16px;
+    }
+    .trust-row{
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+    .trust-card,
+    .process-card,
+    .promise-card,
+    .pkg-card,
+    .compare-card,
+    .brief-card{
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    }
+    .trust-card,
+    .promise-card,
+    .brief-card{
+      padding: 16px;
+    }
+    .trust-card strong,
+    .promise-card strong,
+    .brief-card strong{
+      display:block;
+      margin-bottom: 6px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:flex-end;
+      margin-bottom: 14px;
+    }
+    .section-head p,
+    .section-note,
+    .muted-copy{
+      margin: 0;
+      color: rgba(234,247,241,.78);
+    }
+
+    .process-grid{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .process-card{
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 1rem;
+      background: rgba(46,229,157,.12);
+      border: 1px solid rgba(46,229,157,.26);
+      margin-bottom: 14px;
+    }
+    .process-card h3{
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+    .process-card p{
+      margin: 0;
+      color: rgba(234,247,241,.84);
+    }
+
+    .promise-grid{
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .packages-grid{
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+    .pkg-card{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .pkg-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .pkg-title{
+      font-size: 1.18rem;
+      font-weight: 900;
+      margin: 0 0 6px;
+    }
+    .pkg-desc{
+      margin: 0;
+      color: rgba(234,247,241,.8);
+      font-size: .95rem;
+    }
+    .pkg-price{
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin: 0;
+      color: #f7fffb;
+    }
+    .pkg-badge,
+    .info-chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      font-size: .78rem;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 1px solid rgba(46,229,157,.24);
+      background: rgba(46,229,157,.08);
+      padding: 7px 11px;
+      color: var(--text);
+    }
+    .pkg-img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#11241d;
+    }
+    .pkg-info-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .info-box{
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(0,0,0,.12);
+    }
+    .info-box span{
+      display:block;
+      color: rgba(234,247,241,.66);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 4px;
+    }
+    .info-box strong{
+      display:block;
+      font-size: .95rem;
+    }
+    .pkg-section-title{
+      margin: 0 0 8px;
+      font-size: .98rem;
+      font-weight: 900;
+    }
+    .pkg-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(234,247,241,.92);
+    }
+    .pkg-list li{ margin: 7px 0; }
+    .pkg-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .btn-outline{
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 11px 13px;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .btn-outline:hover{
+      background: rgba(255,255,255,.06);
+    }
+    .btn-primary{
+      background: var(--accent);
+      border: 0;
+      color: #0b1411;
+      padding: 11px 13px;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 900;
+    }
+    .empty-state{
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px dashed var(--line);
+      color: rgba(234,247,241,.75);
+      text-align:center;
+      background: rgba(255,255,255,.04);
+    }
+
+    .compare-card{
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    .compare-head{
+      padding: 16px 18px 8px;
+    }
+    .compare-table-wrap{
+      overflow:auto;
+    }
+    .compare-table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 780px;
+    }
+    .compare-table th,
+    .compare-table td{
+      padding: 14px 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: left;
+      vertical-align: top;
+    }
+    .compare-table th{
+      font-size: .85rem;
+      color: rgba(234,247,241,.72);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      background: rgba(255,255,255,.03);
+    }
+    .compare-table td strong{
+      display:block;
+      margin-bottom: 4px;
+    }
+
+    .brief-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .modal-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .modal{
+      width: min(980px, 100%);
+      max-height: min(92vh, 940px);
+      overflow:auto;
+      background: #0d1b17;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.45);
+    }
+    .modal-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .modal-title{
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+    .modal-subtitle{
+      margin-top: 6px;
+      color: rgba(234,247,241,.72);
+    }
+    .icon-btn{
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 900;
+    }
+    .details-shell{
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) minmax(290px, .9fr);
+      gap: 16px;
+    }
+    .details-main,
+    .details-side,
+    .detail-card{
+      display:grid;
+      gap: 14px;
+    }
+    .detail-card{
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.04);
+    }
+    .detail-card h4{
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+    .detail-card p{ margin: 0; }
+    .detail-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(234,247,241,.92);
+    }
+    .detail-list li{ margin: 7px 0; }
+    .detail-kv{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .detail-kv .info-box{ background: rgba(0,0,0,.16); }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .form-grid .full{ grid-column: 1 / -1; }
+    .field label{
+      display:block;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: rgba(234,247,241,.92);
+    }
+    .field input,
+    .field textarea,
+    .field select{
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline: none;
+    }
+    .field textarea{
+      min-height: 100px;
+      resize: vertical;
+    }
+    .helper-note,
+    .request-note{
+      margin: 0;
+      color: rgba(234,247,241,.74);
+      font-size: .93rem;
+      line-height: 1.6;
+    }
+    .request-highlight{
+      border-left: 3px solid rgba(46,229,157,.45);
+      padding-left: 12px;
+      color: rgba(234,247,241,.86);
+    }
+
+    @media (max-width: 1024px){
+      .hero-grid,
+      .details-shell{
+        grid-template-columns: 1fr;
+      }
+      .trust-row,
+      .promise-grid,
+      .brief-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 760px){
+      .hero-shell{ padding: 20px; }
+      .hero-points,
+      .trust-row,
+      .process-grid,
+      .promise-grid,
+      .brief-grid,
+      .pkg-info-grid,
+      .detail-kv,
+      .form-grid{
+        grid-template-columns: 1fr;
+      }
+      .packages-grid{
+        grid-template-columns: 1fr;
+      }
+      .modal{ padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container row">
+      <a class="brand" href="index.html">
+        <span class="logo">🌿</span>
+        <span>
+          <strong>Batalawatta Plant Nursery</strong>
+          <small>Quality Plants • Sri Lanka</small>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="landscaping.html" aria-current="page">Landscaping</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+        <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-hero">
+      <div class="hero-shell">
+        <div class="hero-eyebrow">🌿 Architect-Led Landscape Design & Installation</div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1>Landscape Architect කෙනෙකුගේ guidance එකෙන් ඔබගේ ගෙවත්තට real-world solution එකක්</h1>
+            <p>
+              Batalawatta Plant Nursery එකේ Landscaping service එක simply plants දාන්නෙ නෙවෙයි.
+              Site analysis, concept planning, plant selection, quotation approval, installation supervision,
+              සහ after-care guidance එක දක්වා structured process එකක් තුළ project එක handle කරනවා.
+            </p>
+
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>Landscape architect-led brief</strong>
+                <span class="muted-copy">Customer requirement, sunlight, drainage, circulation, and plant suitability බලලා design direction set කරනවා.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Package visibility</strong>
+                <span class="muted-copy">ඔබ තෝරන package එකේ includes, deliverables, consultation mode, aftercare, exclusions සේරම clear ව පෙන්වනවා.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Quotation before implementation</strong>
+                <span class="muted-copy">Initial price range එක page එකේ visible. Final quotation එක site condition සහ scope අනුව confirm කරනවා.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Handover & guidance</strong>
+                <span class="muted-copy">Installation පස්සේ watering, feeding, and establishment guidance එකත් දෙනවා.</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <div>
+              <h3>Before you request</h3>
+              <ul>
+                <li>Garden photos / current site condition share කරන්න පුළුවන් නම් process එක ඉක්මනින් start කරන්න පුළුවන්.</li>
+                <li>Property type, expected budget range, සහ preferred consultation type එක දාන්න.</li>
+                <li>Package එක final contract එක නොවෙයි. එය scope guideline එකක්. Final BOQ / quotation site review පස්සේ confirm කරනවා.</li>
+              </ul>
+            </div>
+            <div class="hero-cta">
+              <a class="btn-primary" href="#packagesSection">View Packages</a>
+              <a class="btn-outline" href="contact.html">Need a Custom Design?</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-card">
+          <strong>Site-based planning</strong>
+          <span class="muted-copy">Sun, shade, water flow, access, and soil condition consider කරන workflow එකක්.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Clear package scope</strong>
+          <span class="muted-copy">Package එකට ඇතුළත් දේවල් සහ separately quote වෙන දේවල් දෙකම customer ට visible.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Implementation support</strong>
+          <span class="muted-copy">Design idea එකෙන් site execution එක දක්වා continuity එක maintain කරනවා.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Aftercare guidance</strong>
+          <span class="muted-copy">New plants establish වෙන early period එකට practical care instructions.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="padding:18px; margin-top: 18px;">
+      <div class="section-head">
+        <div>
+          <h2 style="margin:0 0 6px;">Our Landscaping Process</h2>
+          <p>Landscape architect / design specialist involvement එකෙන් project එක professionally organize කරන step-by-step workflow එක.</p>
+        </div>
+        <div class="info-chip">6-step real-world process</div>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="step-pill">01</div>
+          <h3>Inquiry & Project Brief</h3>
+          <p>Customer requirement, property type, budget range, garden size, and goals collect කරලා project brief එක build කරනවා.</p>
+        </article>
+        <article class="process-card">
+          <div class="step-pill">02</div>
+          <h3>Site Visit & Analysis</h3>
+          <p>Landscape architect / specialist site condition, sun-shade pattern, drainage, circulation, and usable zones analyse කරනවා.</p>
+        </article>
+        <article class="process-card">
+          <div class="step-pill">03</div>
+          <h3>Concept Design & Plant Palette</h3>
+          <p>Layout direction, planting character, focal points, practical materials, and plant palette customer requirement එකට match කරලා propose කරනවා.</p>
+        </article>
+        <article class="process-card">
+          <div class="step-pill">04</div>
+          <h3>Quotation & Scope Confirmation</h3>
+          <p>Package scope refine කරලා final quotation, timeline, and implementation method customer approval සඳහා share කරනවා.</p>
+        </article>
+        <article class="process-card">
+          <div class="step-pill">05</div>
+          <h3>Installation / Execution</h3>
+          <p>Planting, bed shaping, selected hardscape touches, and site execution supervised way එකෙන් complete කරනවා.</p>
+        </article>
+        <article class="process-card">
+          <div class="step-pill">06</div>
+          <h3>Handover & Aftercare</h3>
+          <p>Final walkthrough, maintenance instructions, watering guidance, and agreed follow-up support customer ට handover කරනවා.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card" style="padding:18px; margin-top: 18px;">
+      <div class="section-head">
+        <div>
+          <h2 style="margin:0 0 6px;">What every package is built around</h2>
+          <p>Package price level එක වෙනස් වුණත්, professional landscaping service එකකට තිබිය යුතු core expectations මෙන්න.</p>
+        </div>
+      </div>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <strong>Design thinking</strong>
+          <span class="muted-copy">Looks + usability + maintenance balance කරන planting decisions.</span>
+        </div>
+        <div class="promise-card">
+          <strong>Plant suitability</strong>
+          <span class="muted-copy">Site conditions සහ maintenance capacity අනුව plant choices.</span>
+        </div>
+        <div class="promise-card">
+          <strong>Visible deliverables</strong>
+          <span class="muted-copy">Customer ට exactly ලැබෙන්නේ මොනවාද කියන එක clearly display කරනවා.</span>
+        </div>
+        <div class="promise-card">
+          <strong>Scope transparency</strong>
+          <span class="muted-copy">Not included items හෝ separate quotation items explicitly mention කරනවා.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="packagesSection" style="padding:18px; margin-top: 18px;">
+      <div class="section-head">
+        <div>
+          <h2 style="margin:0 0 6px;">Landscaping Packages</h2>
+          <p class="section-note">
+            * Price range එක preliminary guideline එකක්. Final quotation එක site condition, access, plant count, hardscape scope,
+            and material selection අනුව confirm කරනවා.
+          </p>
+        </div>
+        <a class="btn-outline" href="contact.html">Request Custom Scope</a>
+      </div>
+
+      <div class="packages-grid" id="packagesGrid"></div>
+      <div id="packageCompareWrap"></div>
+    </section>
+
+    <section class="card" style="padding:18px; margin-top: 18px;">
+      <div class="section-head">
+        <div>
+          <h2 style="margin:0 0 6px;">How to submit a strong request</h2>
+          <p>Good project brief එකක් දාපු customer ට faster response, better quotation accuracy, and smoother consultation flow එක ලැබෙනවා.</p>
+        </div>
+      </div>
+      <div class="brief-grid">
+        <div class="brief-card">
+          <strong>01. Choose the right package</strong>
+          <span class="muted-copy">Compare table එක බලලා property size, consultation mode, and aftercare level එකට ගැළපෙන package එක තෝරන්න.</span>
+        </div>
+        <div class="brief-card">
+          <strong>02. Fill project details</strong>
+          <span class="muted-copy">Property type, budget range, preferred consultation, and garden goals දාන්න. මේවා landscape architect brief එකට useful.</span>
+        </div>
+        <div class="brief-card">
+          <strong>03. Share site context</strong>
+          <span class="muted-copy">Notes field එකේ lawn, pond, pathways, shade trees, lighting, or maintenance concerns mention කරන්න.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Details Modal -->
+  <div class="modal-backdrop" id="detailsBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="detailsTitle">Package Details</h3>
+          <div class="modal-subtitle" id="detailsSubtitle"></div>
+        </div>
+        <button class="icon-btn" id="detailsClose" type="button" aria-label="Close">✕</button>
+      </div>
+      <div id="detailsBody"></div>
+    </div>
+  </div>
+
+  <!-- Request Modal -->
+  <div class="modal-backdrop" id="requestBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="requestTitle">Package Request</h3>
+          <div class="modal-subtitle" id="requestSubtitle"></div>
+        </div>
+        <button class="icon-btn" id="requestClose" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <form id="requestForm">
+        <p class="request-note request-highlight">
+          Request form එක submit වුණාම record එක ඔබගේ account එකට save වෙනවා. ඊට පස්සේ WhatsApp message එක open වෙලා team එකට quick brief එක යවන්න පුළුවන්.
+        </p>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="custName">Name *</label>
+            <input id="custName" name="custName" required placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="custPhone">Phone *</label>
+            <input id="custPhone" name="custPhone" required placeholder="07X XXX XXXX" />
+          </div>
+          <div class="field full">
+            <label for="custAddress">Address / Location *</label>
+            <input id="custAddress" name="custAddress" required placeholder="Town / Area / Full address" />
+          </div>
+          <div class="field">
+            <label for="propertyType">Property type</label>
+            <select id="propertyType" name="propertyType">
+              <option value="">Select</option>
+              <option value="Home garden">Home garden</option>
+              <option value="Front yard">Front yard</option>
+              <option value="Backyard">Backyard</option>
+              <option value="Balcony / terrace">Balcony / terrace</option>
+              <option value="Office / commercial">Office / commercial</option>
+              <option value="Hotel / villa">Hotel / villa</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="gardenSize">Garden size (approx.)</label>
+            <select id="gardenSize" name="gardenSize">
+              <option value="">Select</option>
+              <option value="Small (up to 10 perches)">Small (up to 10 perches)</option>
+              <option value="Medium (10–20 perches)">Medium (10–20 perches)</option>
+              <option value="Large (20+ perches)">Large (20+ perches)</option>
+              <option value="Not sure">Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budgetRange">Budget range</label>
+            <select id="budgetRange" name="budgetRange">
+              <option value="">Select</option>
+              <option value="Below Rs. 50,000">Below Rs. 50,000</option>
+              <option value="Rs. 50,000 - 100,000">Rs. 50,000 - 100,000</option>
+              <option value="Rs. 100,000 - 200,000">Rs. 100,000 - 200,000</option>
+              <option value="Rs. 200,000 - 350,000">Rs. 200,000 - 350,000</option>
+              <option value="Rs. 350,000+">Rs. 350,000+</option>
+              <option value="Need guidance">Need guidance</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="consultationPreference">Preferred consultation</label>
+            <select id="consultationPreference" name="consultationPreference">
+              <option value="">Select</option>
+              <option value="On-site visit">On-site visit</option>
+              <option value="Phone / video call first">Phone / video call first</option>
+              <option value="WhatsApp discussion first">WhatsApp discussion first</option>
+              <option value="Need recommendation">Need recommendation</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="preferredDate">Preferred consultation / visit date</label>
+            <input id="preferredDate" name="preferredDate" type="date" />
+          </div>
+          <div class="field full">
+            <label for="projectGoals">Project goals</label>
+            <textarea id="projectGoals" name="projectGoals" placeholder="Example: low-maintenance front garden, children-friendly lawn edge, flowering border, tropical look, modern entry planting..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="notes">Additional notes</label>
+            <textarea id="notes" name="notes" placeholder="Any special requests (pond, lawn, pathway, shade plants, stones, lighting, existing trees, irrigation...)" ></textarea>
+          </div>
+        </div>
+
+        <div class="pkg-actions" style="justify-content: flex-end; margin-top: 14px;">
+          <button class="btn-outline" id="btnCancelRequest" type="button">Cancel</button>
+          <button class="btn-primary" type="submit">Save Request & Open WhatsApp</button>
+        </div>
+
+        <p class="helper-note" style="margin-top: 12px;">
+          Browser එකේ pop-up block වුණොත් WhatsApp link එක same tab එකෙන් open වෙනවා. Request record එක save වුණාට පස්සේ My Account → Landscaping Requests එකෙන් status track කරන්න පුළුවන්.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container row">
+      <p>© <span id="year"></span> Batalawatta Plant Nursery</p>
+      <p class="muted">Architect-Led Landscaping • Plants • Delivery</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/landscaping.js"></script>
+</body>
+</html>

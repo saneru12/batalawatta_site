@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delivery Information | Batalawatta</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style-enhanced.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="landscaping.html">Landscaping</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html" class="active">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+        <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container delivery-page-shell">
+    <section class="hero hero--split delivery-hero">
+      <div class="hero__content">
+        <span class="badge">Plant delivery by nursery team</span>
+        <h1>Batalawatta Plant Delivery Process</h1>
+        <p class="muted">ඔබගේ පැළ order එක nursery team එකෙන්ම, owner's own vehicle එකෙන්, delivery boy කෙනෙක් අතින් careful ලෙස deliver කරන flow එක මෙතැනින් බලන්න.</p>
+        <div class="hero__actions">
+          <a class="btn" href="products.html">Browse Plants</a>
+          <a class="btn btn-ghost" href="checkout.html">Book Delivery</a>
+        </div>
+      </div>
+      <div class="card hero__feature delivery-hero-card">
+        <div class="p">
+          <h3>Why this process works</h3>
+          <div id="deliveryQuickFacts" class="mini-bullet-list muted"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card delivery-section-card">
+      <div class="p">
+        <div class="section-head compact-head">
+          <div>
+            <h2>Step-by-step delivery flow</h2>
+            <p class="muted">Customer ට site එකේ visible වෙන stages. Order account page එකෙන් track කරන්නත් පුළුවන්.</p>
+          </div>
+        </div>
+        <div id="deliveryProcessGrid" class="process-card-grid"></div>
+      </div>
+    </section>
+
+    <section class="section card delivery-section-card">
+      <div class="p">
+        <div class="section-head compact-head">
+          <div>
+            <h2>Delivery Zones & Charges</h2>
+            <p class="muted">Delivery fee එක zone අනුව auto calculate වෙලා checkout එකේ total එකට add වෙනවා.</p>
+          </div>
+        </div>
+        <div id="deliveryZonesTableWrap" class="table-shell"></div>
+      </div>
+    </section>
+
+    <section class="section delivery-two-col">
+      <div class="card delivery-section-card">
+        <div class="p">
+          <h2>Service Rules</h2>
+          <ul id="deliveryPolicies" class="policy-list"></ul>
+        </div>
+      </div>
+      <div class="card delivery-section-card">
+        <div class="p">
+          <h2>Need a special delivery?</h2>
+          <p class="muted">Large planters, fragile tall plants, office deliveries, or custom route requests සඳහා checkout note හෝ WhatsApp confirmation භාවිතා කරන්න.</p>
+          <div class="delivery-contact-box">
+            <p class="muted">Preferred date, landmark, and receiver phone number add කළොත් dispatch team එකට route plan කරන්න easy වෙයි.</p>
+            <div class="actions" style="margin-top:12px;">
+              <a class="btn" href="checkout.html">Checkout & Book Delivery</a>
+              <a class="btn btn-outline" id="deliveryWaBtn" target="_blank" rel="noopener">WhatsApp Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <div>© <span id="year"></span> Batalawatta Plant Nursery</div>
+      <div><a href="checkout.html">Checkout</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/delivery-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plant Details | Batalawatta</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style-enhanced.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html" class="active">Plants</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 18px;">
+    <div id="msg" class="muted"></div>
+  </main>
+
+  <section class="product-details">
+    <div class="product-container">
+
+      <div class="product-hero">
+        <img id="plantImage" src="https://picsum.photos/seed/plant/1000/700" alt="Plant image">
+      </div>
+
+      <div>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a> / <a href="products.html">Plants</a>         <a href="landscaping.html">Landscaping</a>
+/ <span id="plantNameCrumb">Plant</span>
+        </div>
+
+        <h1 class="product-title" id="plantName">Loading...</h1>
+        <div class="product-price" id="plantPrice">Rs. 0</div>
+        <div class="muted" id="plantStock"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div class="pill">Category: <b id="plantCategory">—</b></div>
+          <div class="pill">Status: <b id="plantStatus">—</b></div>
+        </div>
+
+        <p class="muted" id="plantDescription" style="margin-top: 14px;"></p>
+
+        <div class="actions">
+          <div class="qty" aria-label="Quantity selector">
+            <button id="btnMinus" type="button">−</button>
+            <input id="qty" type="number" min="1" value="1">
+            <button id="btnPlus" type="button">+</button>
+          </div>
+
+          <button class="btn" id="btnAdd">ADD TO CART</button>
+          <button class="btn btn-outline" id="btnBuy">BUY NOW</button>
+        </div>
+
+        <div class="muted" style="margin-top: 12px;">
+          Note: Demo UI. Cart/checkout can be wired next.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-wrap">
+      <div>
+        <b>Batalawatta Plant Nursery</b><br/>
+        <small>Healthy plants • Home gardening • Delivery available</small>
+      </div>
+      <div>
+        <small><b>Contact:</b> +94 XX XXX XXXX</small><br/>
+        <small>© 2026 Batalawatta Plant Nursery. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+<script src="assets/js/cart.js"></script>
+  <script src="assets/js/product.js"></script>
+</body>
+</html>

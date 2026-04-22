@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout | Batalawatta</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style-enhanced.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="landscaping.html">Landscaping</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+        <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-intro delivery-page-intro">
+      <div>
+        <span class="badge">Real-world checkout flow</span>
+        <h1>Checkout, Delivery Booking & Payment Proof</h1>
+        <p class="muted">Choose your delivery window, select a real-world payment method, upload the slip if needed, and place the order. A WhatsApp-ready confirmation opens after the order is saved.</p>
+      </div>
+      <a class="btn btn-outline" href="delivery.html">View Delivery Process</a>
+    </section>
+
+    <div class="checkout-grid delivery-checkout-grid">
+      <section class="card checkout-card sticky-card">
+        <div class="p">
+          <div class="section-head compact-head">
+            <div>
+              <h2 style="margin-top:0;">Order Summary</h2>
+              <p class="muted compact-copy">Cart subtotal, delivery fee, and payment method availability update live.</p>
+            </div>
+          </div>
+
+          <div id="checkoutItems" class="checkout-items"></div>
+
+          <div class="summary-box">
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <strong id="summarySubtotal">Rs. 0</strong>
+            </div>
+            <div class="summary-line">
+              <span>Delivery Fee</span>
+              <strong id="summaryDeliveryFee">Rs. 0</strong>
+            </div>
+            <div class="summary-line total-line">
+              <span>Total Payable</span>
+              <strong id="checkoutTotal">Rs. 0</strong>
+            </div>
+          </div>
+
+          <div id="deliveryEstimateCard" class="delivery-mini-card" style="display:none;"></div>
+
+          <div class="delivery-method-card">
+            <h3>Delivery handling</h3>
+            <p class="muted">Batalawatta nursery vehicle + delivery boy handling for safer plant transport.</p>
+            <ul class="mini-bullet-list">
+              <li>Plants are checked and packed before loading</li>
+              <li>Driver calls before arrival</li>
+              <li>COD, bank transfer, QR, Skrill, and crypto can be handled from this checkout</li>
+            </ul>
+          </div>
+
+          <div class="delivery-process-preview">
+            <h3>How your order moves</h3>
+            <div id="deliveryProcessSteps" class="process-steps-mini"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card checkout-card">
+        <div class="p">
+          <h2 style="margin-top:0;">Customer, Delivery & Payment Details</h2>
+          <form id="checkoutForm">
+            <div class="form-grid two-col-form">
+              <div>
+                <label>Full Name</label>
+                <input id="name" required placeholder="Your full name"/>
+              </div>
+              <div>
+                <label>Phone</label>
+                <input id="phone" required placeholder="07X XXX XXXX"/>
+              </div>
+            </div>
+
+            <div class="form-grid two-col-form">
+              <div>
+                <label>Email (optional)</label>
+                <input id="email" type="email" placeholder="you@example.com"/>
+              </div>
+              <div>
+                <label>Recipient Phone</label>
+                <input id="recipientPhone" placeholder="Different receiver? Add number"/>
+              </div>
+            </div>
+
+            <label>Full Delivery Address</label>
+            <textarea id="address" required placeholder="House No, Road, Area, City"></textarea>
+
+            <div class="form-grid two-col-form">
+              <div>
+                <label>Recipient Name</label>
+                <input id="recipientName" placeholder="Leave as your name if same"/>
+              </div>
+              <div>
+                <label>Nearest Landmark</label>
+                <input id="landmark" placeholder="Landmark / gate / easy location note"/>
+              </div>
+            </div>
+
+            <div class="delivery-box-section">
+              <h3>Delivery Booking</h3>
+              <div class="form-grid two-col-form">
+                <div>
+                  <label>Delivery Zone</label>
+                  <select id="deliveryZone" required>
+                    <option value="">Loading delivery zones...</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Preferred Time Slot</label>
+                  <select id="preferredTimeSlot" required>
+                    <option value="">Loading slots...</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid two-col-form">
+                <div>
+                  <label>Preferred Delivery Date</label>
+                  <input id="preferredDate" type="date" required />
+                </div>
+                <div>
+                  <label>Payment Method</label>
+                  <select id="paymentMethod" required>
+                    <option value="cod">Loading payment methods...</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="zoneHelp" class="delivery-zone-help muted"></div>
+            </div>
+
+            <div class="payment-box-section">
+              <div class="compact-head payment-head-row">
+                <div>
+                  <h3 style="margin:0;">Payment Instructions</h3>
+                  <p id="paymentPolicyNote" class="muted compact-copy">Loading payment rules...</p>
+                </div>
+                <span id="paymentTag" class="badge">Manual verification</span>
+              </div>
+
+              <div id="paymentMethodHelp" class="payment-help-card"></div>
+
+              <div id="paymentMediaWrap" class="payment-media-wrap" style="display:none;">
+                <img id="paymentQrImage" class="payment-qr-image" alt="Payment QR" style="display:none;" />
+                <a id="paymentQrLink" class="btn btn-outline small-link" href="#" target="_blank" rel="noopener" style="display:none;">Open QR</a>
+              </div>
+
+              <div id="cryptoWalletWrap" class="form-grid two-col-form" style="display:none; margin-top:12px;">
+                <div>
+                  <label>Crypto Wallet / Network</label>
+                  <select id="cryptoWallet"></select>
+                </div>
+                <div>
+                  <label>Transaction Hash / Reference</label>
+                  <input id="paymentReference" placeholder="TX hash / reference" />
+                </div>
+              </div>
+
+              <div id="standardPaymentWrap" class="form-grid two-col-form" style="margin-top:12px;">
+                <div>
+                  <label id="payerNameLabel" for="payerName">Payer Name</label>
+                  <input id="payerName" placeholder="Name on the payment" />
+                </div>
+                <div>
+                  <label id="paymentReferenceLabel" for="paymentReferenceStandard">Reference</label>
+                  <input id="paymentReferenceStandard" placeholder="Reference / note" />
+                </div>
+              </div>
+
+              <div class="form-grid two-col-form" style="margin-top:12px;">
+                <div>
+                  <label>Payment Date / Time (optional)</label>
+                  <input id="paymentPaidAt" type="datetime-local" />
+                </div>
+                <div>
+                  <label>Payer Phone (optional)</label>
+                  <input id="payerPhone" placeholder="If different from delivery phone" />
+                </div>
+              </div>
+
+              <div id="paymentSlipWrap" class="payment-slip-card" style="display:none;">
+                <label>Payment Slip / Screenshot</label>
+                <input id="paymentSlip" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf" />
+                <div id="paymentSlipHelp" class="muted compact-copy"></div>
+                <div id="paymentSlipPreview" class="payment-slip-preview muted"></div>
+              </div>
+            </div>
+
+            <label>Delivery Instructions (optional)</label>
+            <textarea id="deliveryInstructions" placeholder="Call before arrival / keep near gate / fragile tall plant / office reception note"></textarea>
+
+            <label>Order Notes (optional)</label>
+            <textarea id="notes" placeholder="Any plant care or packing note for the nursery team"></textarea>
+
+            <div id="minimumOrderHint" class="inline-note" style="display:none;"></div>
+
+            <div id="checkoutSuccess" class="success-panel" style="display:none;"></div>
+
+            <div id="waWrap" class="actions" style="margin-top:12px; display:none;">
+              <a id="waBtn" class="btn" target="_blank" rel="noopener">Open WhatsApp confirmation</a>
+              <a class="btn btn-outline" href="account.html">Track in My Account</a>
+            </div>
+
+            <div class="actions" style="margin-top:14px;">
+              <button class="btn" type="submit">Place Order</button>
+              <a class="btn btn-outline" href="cart.html">Back to Cart</a>
+            </div>
+
+            <div id="checkoutMsg" class="muted" style="margin-top:10px;"></div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <div>© <span id="year"></span> Batalawatta Plant Nursery</div>
+      <div><a href="delivery.html">Delivery Information</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Batalawatta Plant Nursery — Admin</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="login" id="loginView">
+      <div class="card">
+        <div class="brand">
+          
+          <div>
+            <h1>Admin Panel</h1>
+            <p>Bathalawatta Plant Nursery</p>
+          </div>
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+          <label>
+            <span>Email</span>
+            <input type="email" id="email" placeholder="admin@batalawatta.lk" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="password" placeholder="••••••••" required />
+          </label>
+          <button class="btn primary" type="submit">Sign in</button>
+          <p class="hint">Tip: change admin credentials in <code>backend/.env</code></p>
+          <p id="loginError" class="error" style="display:none;"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="shell" id="adminView" style="display:none;">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="mini-brand">
+            
+            <div>
+              <div class="title">Admin</div>
+              <div class="sub">Batalawatta Nursery</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" data-page="dashboard">Dashboard</button>
+          <button class="nav-item" data-page="plants">Plants</button>
+          <button class="nav-item" data-page="orders">Orders</button>
+          <button class="nav-item" data-page="deliveryOps">Delivery Ops</button>
+          <button class="nav-item" data-page="landscapingPackages">Landscaping Packages</button>
+          <button class="nav-item" data-page="landscapingRequests">Landscaping Requests</button>
+          <button class="nav-item" data-page="inquiries">Inquiries</button>
+          <button class="nav-item" data-page="reviews">Reviews</button>
+          <button class="nav-item" data-page="settings">Settings</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button id="logoutBtn" class="btn ghost">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2 id="pageTitle">Dashboard</h2>
+            <div class="muted" id="pageSubtitle">Overview and quick actions</div>
+          </div>
+
+          <div class="topbar-actions">
+            <input id="globalSearch" class="search" placeholder="Search…" />
+            <button id="refreshBtn" class="btn">Refresh</button>
+          </div>
+        </header>
+
+        <section class="content">
+          <!-- Dashboard -->
+          <div class="page" id="page-dashboard">
+            <div class="grid cards">
+              <div class="card stat">
+                <div class="k">Plants</div>
+                <div class="v" id="statPlants">—</div>
+                <div class="muted">Total products</div>
+              </div>
+              <div class="card stat">
+                <div class="k">Packages</div>
+                <div class="v" id="statPackages">—</div>
+                <div class="muted">Landscaping packages</div>
+              </div>
+              <div class="card stat">
+                <div class="k">Orders</div>
+                <div class="v" id="statOrders">—</div>
+                <div class="muted">All statuses</div>
+              </div>
+              <div class="card stat">
+                <div class="k">New landscape requests</div>
+                <div class="v" id="statLandReq">—</div>
+                <div class="muted">Status: new</div>
+              </div>
+              <div class="card stat">
+                <div class="k">New inquiries</div>
+                <div class="v" id="statInquiries">—</div>
+                <div class="muted">Status: new</div>
+              </div>
+              <div class="card stat">
+                <div class="k">Reviews</div>
+                <div class="v" id="statReviews">—</div>
+                <div class="muted">Visible on site</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Quick actions</h3>
+              <div class="row">
+                <button class="btn primary" data-quick="addPlant">Add new plant</button>
+                <button class="btn" data-quick="pendingOrders">View pending orders</button>
+                <button class="btn" data-quick="newInquiries">View new inquiries</button>
+                <button class="btn" data-quick="landPackages">Manage packages</button>
+                <button class="btn" data-quick="newLandReq">New landscaping requests</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Tips</h3>
+              <ul class="list">
+                <li>Use “Plants” to add/update prices, categories and availability.</li>
+                <li>Update “Orders” status to keep your customer flow clear (pending → confirmed → delivered).</li>
+                <li>Mark “Inquiries” as resolved once handled.</li>
+                <li>Hide spam/low-quality “Reviews” using the approve toggle.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Plants -->
+          <div class="page" id="page-plants" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Plants</h3>
+                  <div class="muted">Create, edit, delete products</div>
+                </div>
+                <div class="right">
+                  <button class="btn primary" id="addPlantBtn">+ Add plant</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="plantsTable">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th class="num">Price (LKR)</th>
+                      <th>Available</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Orders -->
+          <div class="page" id="page-orders" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Orders</h3>
+                  <div class="muted">Track and update status</div>
+                </div>
+                <div class="right">
+                  <select id="orderStatusFilter" class="select">
+                    <option value="">All</option>
+                    <option value="pending">pending</option>
+                    <option value="confirmed">confirmed</option>
+                    <option value="preparing">preparing</option>
+                    <option value="scheduled">scheduled</option>
+                    <option value="out_for_delivery">out_for_delivery</option>
+                    <option value="delivered">delivered</option>
+                    <option value="cancelled">cancelled</option>
+                  </select>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="ordersTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Customer</th>
+                      <th>Phone</th>
+                      <th class="num">Total</th>
+                      <th>Status</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card" id="orderDetails" style="display:none;">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Order details</h3>
+                  <div class="muted" id="orderDetailsMeta"></div>
+                </div>
+                <div class="right">
+                  <button class="btn" id="closeOrderDetails">Close</button>
+                </div>
+              </div>
+              <div id="orderDetailsBody"></div>
+            </div>
+          </div>
+
+          <!-- Delivery Ops -->
+          <div class="page" id="page-deliveryOps" style="display:none;">
+            <div class="grid cards">
+              <div class="card stat">
+                <div class="k">Active Zones</div>
+                <div class="v" id="deliveryStatZones">—</div>
+                <div class="muted">Visible on checkout</div>
+              </div>
+              <div class="card stat">
+                <div class="k">Delivery Boys</div>
+                <div class="v" id="deliveryStatTeam">—</div>
+                <div class="muted">Total rider accounts</div>
+              </div>
+              <div class="card stat">
+                <div class="k">Unassigned Orders</div>
+                <div class="v" id="deliveryStatUnassigned">—</div>
+                <div class="muted">Need dispatch action</div>
+              </div>
+              <div class="card stat">
+                <div class="k">On Route</div>
+                <div class="v" id="deliveryStatOnRoute">—</div>
+                <div class="muted">Out for delivery now</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Delivery Service Setup</h3>
+                  <div class="muted">Real-world nursery dispatch settings used by the public delivery page, checkout, and rider allocation rules.</div>
+                </div>
+                <div class="right">
+                  <button class="btn" id="reloadDeliveryOpsBtn" type="button">Reload</button>
+                </div>
+              </div>
+              <div id="deliveryOpsMsg" class="muted" style="margin-top:.75rem;"></div>
+              <form id="deliverySettingsForm" class="admin-settings-form" autocomplete="off">
+                <div class="grid two">
+                  <label><span>Service title</span><input id="do_serviceTitle" placeholder="Batalawatta Team Delivery"></label>
+                  <label><span>Service type label</span><input id="do_serviceType" placeholder="Own vehicle delivery"></label>
+                </div>
+                <div class="grid two" style="margin-top:12px;">
+                  <label><span>Base location</span><input id="do_baseLocation" placeholder="Batalawatta, Battaramulla"></label>
+                  <label><span>Vehicle note</span><input id="do_vehicleNote" placeholder="Plants are delivered using our own vehicle"></label>
+                </div>
+                <div class="grid two" style="margin-top:12px;">
+                  <label><span>Minimum recommended order (LKR)</span><input id="do_minimumRecommendedOrder" type="number" min="0" step="1"></label>
+                  <label><span>Issue report window (hours)</span><input id="do_issueReportWindowHours" type="number" min="1" step="1"></label>
+                </div>
+                <div class="grid two" style="margin-top:12px;">
+                  <label><span>Same-day cutoff hour (24h)</span><input id="do_sameDayCutoffHour" type="number" min="0" max="23" step="1"></label>
+                  <label><span>Same-day cutoff label</span><input id="do_sameDayCutoffLabel" placeholder="12:00 PM"></label>
+                </div>
+                <div class="grid two" style="margin-top:12px;">
+                  <label><span>Max stops per delivery boy / day</span><input id="do_maxStopsPerDay" type="number" min="1" step="1"></label>
+                  <label><span>Max stops per delivery boy / slot</span><input id="do_maxStopsPerSlot" type="number" min="1" step="1"></label>
+                </div>
+                <div class="grid two" style="margin-top:12px;">
+                  <label><input id="do_contactBeforeArrival" type="checkbox"> <span class="muted">Ask rider to call customer before arrival</span></label>
+                  <label><input id="do_clusterByZone" type="checkbox"> <span class="muted">Prefer grouping nearby stops by zone</span></label>
+                </div>
+                <label style="margin-top:12px;"><input id="do_autoSuggestRouteSequence" type="checkbox"> <span class="muted">Auto-suggest route sequence based on existing assignments</span></label>
+                <label style="margin-top:12px;"><span>Public delivery policies (one line per policy)</span><textarea id="do_policies" class="compact-textarea" placeholder="Delivery fee is calculated by zone
+Preferred time is confirmed by the nursery
+Report issues within 24 hours"></textarea></label>
+                <div class="actions">
+                  <button class="btn primary" type="submit">Save Delivery Settings</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="grid two">
+              <div class="card">
+                <div class="toolbar">
+                  <div class="left">
+                    <h3>Time Slots</h3>
+                    <div class="muted">Shown at checkout and used for rider workload balancing.</div>
+                  </div>
+                  <div class="right">
+                    <button class="btn primary" id="addDeliverySlotBtn" type="button">+ Add slot</button>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table class="table" id="deliveryTimeSlotsTable">
+                    <thead>
+                      <tr>
+                        <th>Slot</th>
+                        <th>Hours</th>
+                        <th>Active</th>
+                        <th class="num">Sort</th>
+                        <th class="actions">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="toolbar">
+                  <div class="left">
+                    <h3>Delivery Boy Portal</h3>
+                    <div class="muted">Separate login for riders to view assignments and log completed activities.</div>
+                  </div>
+                  <div class="right">
+                    <a class="btn" href="delivery-staff.html" target="_blank" rel="noopener">Open Portal</a>
+                  </div>
+                </div>
+                <div class="delivery-portal-note">
+                  <div class="delivery-note-chip">1. Admin creates rider account</div>
+                  <div class="delivery-note-chip">2. Admin assigns scheduled orders</div>
+                  <div class="delivery-note-chip">3. Rider logs route actions + proof</div>
+                  <div class="delivery-note-chip">4. Admin reviews logs from order details</div>
+                </div>
+                <div class="muted" style="margin-top:14px; line-height:1.7;">
+                  Use the rider portal for real-world dispatch control: accepted route, left nursery, arrived nearby, delivered, and issue reporting. This keeps the admin panel clean while still giving you visibility into every delivery activity.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Delivery Zones &amp; Charges</h3>
+                  <div class="muted">These rows power the public delivery page and checkout fee calculation.</div>
+                </div>
+                <div class="right">
+                  <button class="btn primary" id="addDeliveryZoneBtn" type="button">+ Add zone</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="deliveryZonesAdminTable">
+                  <thead>
+                    <tr>
+                      <th>Zone</th>
+                      <th>Areas</th>
+                      <th class="num">Fee</th>
+                      <th>Lead Time</th>
+                      <th>Same Day</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Dispatch Board</h3>
+                  <div class="muted">Assign orders to the most suitable rider using zone coverage, current workload, and slot capacity.</div>
+                </div>
+                <div class="right">
+                  <input id="dispatchBoardDate" type="date" class="select">
+                  <button class="btn" id="reloadDispatchBoardBtn" type="button">Reload board</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="dispatchBoardTable">
+                  <thead>
+                    <tr>
+                      <th>Order</th>
+                      <th>Customer</th>
+                      <th>Zone / Window</th>
+                      <th>Status</th>
+                      <th>Assigned</th>
+                      <th>Suggested</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Delivery Boys</h3>
+                  <div class="muted">Create logins, define coverage zones, and control daily delivery capacity.</div>
+                </div>
+                <div class="right">
+                  <button class="btn primary" id="addDeliveryBoyBtn" type="button">+ Add delivery boy</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="deliveryTeamTable">
+                  <thead>
+                    <tr>
+                      <th>Delivery Boy</th>
+                      <th>Contact</th>
+                      <th>Coverage</th>
+                      <th>Capacity</th>
+                      <th>Status</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Landscaping Packages -->
+          <div class="page" id="page-landscapingPackages" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Landscaping Packages</h3>
+                  <div class="muted">Create, edit, hide packages shown on the website</div>
+                </div>
+                <div class="right">
+                  <button class="btn primary" id="addLandPkgBtn">+ Add package</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="landPkgsTable">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Price Range</th>
+                      <th>Duration</th>
+                      <th>Active</th>
+                      <th class="num">Sort</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Landscaping Requests -->
+          <div class="page" id="page-landscapingRequests" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Landscaping Requests</h3>
+                  <div class="muted">Customer package requests</div>
+                </div>
+                <div class="right">
+                  <select id="landReqStatusFilter" class="select">
+                    <option value="">All</option>
+                    <option value="new">new</option>
+                    <option value="in_progress">in_progress</option>
+                    <option value="scheduled">scheduled</option>
+                    <option value="completed">completed</option>
+                    <option value="cancelled">cancelled</option>
+                  </select>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="landReqTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Customer</th>
+                      <th>Phone</th>
+                      <th>Package</th>
+                      <th>Status</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card" id="landReqDetails" style="display:none;">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Request details</h3>
+                  <div class="muted" id="landReqDetailsMeta"></div>
+                </div>
+                <div class="right">
+                  <button class="btn" id="closeLandReqDetails">Close</button>
+                </div>
+              </div>
+              <div id="landReqDetailsBody"></div>
+            </div>
+          </div>
+
+          <!-- Inquiries -->
+          <div class="page" id="page-inquiries" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Inquiries</h3>
+                  <div class="muted">Contact form messages</div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="inquiriesTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card" id="inquiryDetails" style="display:none;">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Message</h3>
+                  <div class="muted" id="inquiryDetailsMeta"></div>
+                </div>
+                <div class="right">
+                  <button class="btn" id="closeInquiryDetails">Close</button>
+                </div>
+              </div>
+              <div id="inquiryDetailsBody"></div>
+            </div>
+          </div>
+
+          <!-- Reviews -->
+          <div class="page" id="page-reviews" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Reviews</h3>
+                  <div class="muted">Approve / hide / delete</div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table" id="reviewsTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Name</th>
+                      <th class="num">Rating</th>
+                      <th>Comment</th>
+                      <th>Approved</th>
+                      <th class="actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="page" id="page-settings" style="display:none;">
+            <div class="card">
+              <div class="toolbar">
+                <div class="left">
+                  <h3>Website & Payment Settings</h3>
+                  <div class="muted">Customize the public footer, homepage offer banner, contact details, and the checkout payment methods from one place.</div>
+                </div>
+                <div class="right">
+                  <button class="btn" id="reloadPaymentSettingsBtn" type="button">Reload</button>
+                </div>
+              </div>
+              <div id="paymentSettingsMsg" class="muted" style="margin-top:.75rem;"></div>
+              <form id="paymentSettingsForm" class="admin-settings-form" autocomplete="off">
+                <div class="form-section">
+                  <h4>Website customization</h4>
+                  <div class="muted settings-inline-note">These fields update the public footer, quick contact details, and the homepage offer banner.</div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Footer tagline</span><input id="site_footerTagline" placeholder="Healthy plants • Home gardening • Delivery available"></label>
+                    <label><span>Primary phone</span><input id="site_contactPhone" placeholder="+94 77 123 4567"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Contact email</span><input id="site_contactEmail" type="email" placeholder="hello@batalawatta.lk"></label>
+                    <label><span>Business hours</span><input id="site_businessHours" placeholder="Mon - Sat • 8.00 AM - 6.00 PM"></label>
+                  </div>
+                  <label style="margin-top:12px;"><span>Address</span><textarea id="site_contactAddress" placeholder="Add the nursery address shown in the footer."></textarea></label>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Delivery note</span><input id="site_deliveryNote" placeholder="Islandwide delivery available for selected areas"></label>
+                    <label><span>Google Maps link</span><input id="site_mapsUrl" placeholder="https://maps.google.com/..." ></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Facebook URL</span><input id="site_facebookUrl" placeholder="https://facebook.com/..." ></label>
+                    <label><span>Instagram URL</span><input id="site_instagramUrl" placeholder="https://instagram.com/..." ></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>TikTok URL</span><input id="site_tiktokUrl" placeholder="https://tiktok.com/..." ></label>
+                    <label><span>Footer copyright text</span><input id="site_footerCopyright" placeholder="All rights reserved."></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Homepage promo image alt text</span><input id="site_promoAlt" placeholder="Batalawatta Plant Nursery special offer"></label>
+                    <label><span>Homepage offer / ad image</span><input id="site_promoImage" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"></label>
+                  </div>
+                  <div id="site_promo_preview" class="settings-upload-preview"></div>
+                </div>
+                <div class="form-section">
+                  <div class="grid two">
+                    <label><span>Business name</span><input id="ps_businessName" placeholder="Batalawatta Plant Nursery"></label>
+                    <label><span>Admin WhatsApp number</span><input id="ps_whatsappNumber" placeholder="9477XXXXXXX"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Order prefix</span><input id="ps_orderPrefix" placeholder="BPN"></label>
+                    <label><span>Slip upload guidance</span><input id="ps_slipGuidance" placeholder="Upload JPG, PNG, WEBP or PDF"></label>
+                  </div>
+                  <label style="margin-top:12px;"><span>Payment policy note shown on checkout</span><textarea id="ps_paymentPolicyNote" placeholder="Orders are dispatched after payment verification."></textarea></label>
+                </div>
+
+                <div class="form-section">
+                  <h4>Cash on Delivery</h4>
+                  <div class="grid two">
+                    <label><span>Method title</span><input id="ps_cod_title" placeholder="Cash on Delivery"></label>
+                    <label><span>Maximum COD order amount (LKR)</span><input id="ps_cod_maxAmount" type="number" min="0" step="1"></label>
+                  </div>
+                  <label style="margin-top:12px;"><input id="ps_cod_enabled" type="checkbox"> <span class="muted">Enable Cash on Delivery</span></label>
+                  <label style="margin-top:12px;"><span>Instructions</span><textarea id="ps_cod_instructions"></textarea></label>
+                </div>
+
+                <div class="form-section">
+                  <h4>Direct Bank Transfer</h4>
+                  <div class="grid two">
+                    <label><span>Method title</span><input id="ps_bank_title" placeholder="Direct Bank Transfer"></label>
+                    <label><span>Bank name</span><input id="ps_bank_bankName"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Account name</span><input id="ps_bank_accountName"></label>
+                    <label><span>Account number</span><input id="ps_bank_accountNumber"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Branch</span><input id="ps_bank_branch"></label>
+                    <label><span>QR image (optional)</span><input id="ps_bank_qr" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"></label>
+                  </div>
+                  <label style="margin-top:12px;"><input id="ps_bank_enabled" type="checkbox"> <span class="muted">Enable bank transfer</span></label>
+                  <label style="margin-top:12px;"><span>Instructions</span><textarea id="ps_bank_instructions"></textarea></label>
+                  <div id="ps_bank_preview" class="settings-upload-preview"></div>
+                </div>
+
+                <div class="form-section">
+                  <h4>LANKAQR / Mobile Banking QR</h4>
+                  <div class="grid two">
+                    <label><span>Method title</span><input id="ps_lanka_title" placeholder="LANKAQR / Mobile Banking QR"></label>
+                    <label><span>Merchant / display name</span><input id="ps_lanka_merchantName"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>QR image</span><input id="ps_lanka_qr" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"></label>
+                    <label style="display:flex; align-items:end;"><input id="ps_lanka_enabled" type="checkbox"> <span class="muted">Enable LANKAQR</span></label>
+                  </div>
+                  <label style="margin-top:12px;"><span>Instructions</span><textarea id="ps_lanka_instructions"></textarea></label>
+                  <div id="ps_lanka_preview" class="settings-upload-preview"></div>
+                </div>
+
+                <div class="form-section">
+                  <h4>Skrill</h4>
+                  <div class="grid two">
+                    <label><span>Method title</span><input id="ps_skrill_title" placeholder="Skrill"></label>
+                    <label><span>Skrill email</span><input id="ps_skrill_email" type="email"></label>
+                  </div>
+                  <div class="grid two" style="margin-top:12px;">
+                    <label><span>Customer ID / note</span><input id="ps_skrill_customerId"></label>
+                    <label style="display:flex; align-items:end;"><input id="ps_skrill_enabled" type="checkbox"> <span class="muted">Enable Skrill</span></label>
+                  </div>
+                  <label style="margin-top:12px;"><span>Instructions</span><textarea id="ps_skrill_instructions"></textarea></label>
+                </div>
+
+                <div class="form-section">
+                  <h4>Crypto Payment</h4>
+                  <div class="grid two">
+                    <label><span>Method title</span><input id="ps_crypto_title" placeholder="Crypto Payment"></label>
+                    <label style="display:flex; align-items:end;"><input id="ps_crypto_enabled" type="checkbox"> <span class="muted">Enable crypto</span></label>
+                  </div>
+                  <label style="margin-top:12px;"><span>Instructions</span><textarea id="ps_crypto_instructions"></textarea></label>
+                  <div class="muted settings-inline-note" style="margin-top:10px;">Tip: turn on Crypto and add at least one wallet address below. If a wallet has an address, it will be made available on checkout even if the wallet tick box was missed.</div>
+                  <div id="cryptoWalletSettings"></div>
+                </div>
+
+                <div class="actions">
+                  <button class="btn primary" type="submit">Save Payment Settings</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card" style="margin-top:14px;">
+              <h3>Backend reminders</h3>
+              <ul class="list">
+                <li>Make sure MongoDB is connected with <code>MONGO_URI</code>.</li>
+                <li>Set <code>JWT_SECRET</code> to a long random string.</li>
+                <li>Change <code>ADMIN_EMAIL</code> and <code>ADMIN_PASSWORD</code> in <code>backend/.env</code>.</li>
+                <li>Static uploads are served from <code>backend/uploads</code>.</li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal" style="display:none;">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 id="modalTitle">Modal</h3>
+          <button class="icon-btn" id="modalClose">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-foot" id="modalFoot"></div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" style="display:none;"></div>
+  </div>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

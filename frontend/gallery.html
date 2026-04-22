@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery | Batalawatta Plant Nursery</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style-enhanced.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+                <a href="landscaping.html">Landscaping</a>
+<a href="gallery.html" class="active">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="gallery-hero">
+      <div>
+        <span class="badge">Nursery Moments</span>
+        <h1>Gallery</h1>
+        <p class="muted">
+          මෙහි ඔබට අපේ නර්සරියේ පැළ, සිටුවීම්, ඵලදායකත්වය (harvest), සහ customer photos වගේ දේවල් බලන්න පුළුවන්.
+        </p>
+      </div>
+
+      <div class="gallery-stats card">
+        <div class="p">
+          <b>Albums</b>
+          <div class="muted">Plants • Harvest • Nursery • Customers</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="gallery-toolbar">
+      <div class="chips" id="galleryChips"></div>
+      <div class="search">
+        <input id="gallerySearch" type="search" placeholder="Search photos (eg: rose, harvest)"/>
+      </div>
+    </div>
+
+    <section>
+      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <div>
+        <b>Batalawatta Plant Nursery</b><br/>
+        <small>Healthy plants • Home gardening • Delivery available</small>
+      </div>
+      <div>
+        <small><b>Contact:</b> +94 XX XXX XXXX</small><br/>
+        <small>© 2026 Batalawatta Plant Nursery. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+      <img id="lightboxImg" alt="Gallery image"/>
+      <div class="lightbox-cap">
+        <b id="lightboxTitle"></b>
+        <div class="muted" id="lightboxMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/gallery.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Batalawatta Plant Nursery</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style-enhanced.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="landscaping.html">Landscaping</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+        <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="max-width:820px;">
+    <h1>Create Customer Account</h1>
+    <p class="muted">Register to track orders, save your address, and checkout faster.</p>
+
+    <div class="card" style="padding:16px;">
+      <form id="registerForm" class="form">
+        <div class="grid-2">
+          <div>
+            <label>Full Name</label>
+            <input type="text" id="name" required placeholder="Your name" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" id="email" required placeholder="name@example.com" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label>Phone</label>
+            <input type="text" id="phone" placeholder="07xxxxxxxx" />
+          </div>
+          <div>
+            <label>Password</label>
+            <input type="password" id="password" required placeholder="Min 6 characters" />
+          </div>
+        </div>
+
+        <label>Delivery Address</label>
+        <textarea id="address" rows="3" placeholder="Your address (optional)"></textarea>
+
+        <button class="btn" type="submit">Create Account</button>
+        <div id="msg" class="muted" style="margin-top:10px;"></div>
+      </form>
+      <hr style="margin:16px 0;">
+      <div class="muted">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>

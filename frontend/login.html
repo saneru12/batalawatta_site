@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Login - Batalawatta Plant Nursery</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style-enhanced.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container row">
+      <a class="brand" href="index.html">Batalawatta Plant Nursery</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Plants</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="landscaping.html">Landscaping</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+        <span id="authLinks"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="max-width:720px;">
+    <h1>Customer Login</h1>
+    <p class="muted">Login to view your orders and manage your profile.</p>
+
+    <div class="card" style="padding:16px;">
+      <form id="loginForm" class="form">
+        <label>Email</label>
+        <input type="email" id="email" required placeholder="name@example.com" />
+
+        <label>Password</label>
+        <input type="password" id="password" required placeholder="••••••••" />
+
+        <button class="btn" type="submit">Login</button>
+        <div id="msg" class="muted" style="margin-top:10px;"></div>
+      </form>
+      <hr style="margin:16px 0;">
+      <div class="muted">
+        New customer? <a href="register.html">Create an account</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batalawatta Delivery Staff Portal</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/delivery-staff.css" />
+</head>
+<body>
+  <div class="staff-shell">
+    <section class="staff-login" id="staffLoginView">
+      <div class="staff-login-card">
+        <span class="badge">Delivery team access</span>
+        <h1>Batalawatta Delivery Staff Portal</h1>
+        <p class="muted">Delivery boy කෙනෙක්ට අද assign කරපු orders, route sequence, customer details, delivery logs, COD handover details මෙතැනින් manage කරන්න පුළුවන්.</p>
+
+        <form id="staffLoginForm" class="staff-form" autocomplete="off">
+          <label>
+            <span>Username</span>
+            <input type="text" id="staffUsername" placeholder="delivery username" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="staffPassword" placeholder="password" required />
+          </label>
+          <button class="btn" type="submit">Log in</button>
+          <p class="staff-error" id="staffLoginError"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="staff-app" id="staffAppView" style="display:none;">
+      <header class="staff-topbar">
+        <div>
+          <div class="staff-brand">Batalawatta Plant Nursery</div>
+          <h2>Delivery Operations</h2>
+          <p class="muted" id="staffWelcomeLine">Assigned routes and handover updates</p>
+        </div>
+        <div class="staff-top-actions">
+          <button class="btn btn-outline" id="staffRefreshBtn" type="button">Refresh</button>
+          <button class="btn btn-ghost" id="staffLogoutBtn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <div class="staff-grid">
+        <aside class="staff-side-panel">
+          <div class="staff-panel-card">
+            <h3>Your profile</h3>
+            <div id="staffProfileMeta" class="staff-stack"></div>
+          </div>
+
+          <div class="staff-panel-card">
+            <h3>Route filters</h3>
+            <div class="staff-form compact">
+              <label>
+                <span>Date</span>
+                <input type="date" id="staffDateFilter" />
+              </label>
+              <label>
+                <span>Status</span>
+                <select id="staffStatusFilter">
+                  <option value="">All assigned orders</option>
+                  <option value="scheduled">Scheduled</option>
+                  <option value="out_for_delivery">Out for delivery</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="pending">Pending</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="preparing">Preparing</option>
+                </select>
+              </label>
+            </div>
+            <p class="muted small-note">Admin එක assign කරපු work list එක date and status අනුව බලන්න.</p>
+          </div>
+
+          <div class="staff-panel-card">
+            <h3>Real-world route checklist</h3>
+            <ul class="staff-checklist">
+              <li>Accept route before leaving the nursery.</li>
+              <li>Load tall / fragile plants upright and secure them.</li>
+              <li>Call receiver before arrival if landmark is unclear.</li>
+              <li>Capture issue note or delivery proof immediately after handover.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <main class="staff-main-panel">
+          <div class="staff-stats" id="staffStatsWrap"></div>
+          <div class="staff-inline-message" id="staffMessage"></div>
+          <div class="staff-orders-grid" id="staffOrdersWrap"></div>
+        </main>
+      </div>
+    </section>
+  </div>
+
+  <div class="staff-modal-backdrop" id="staffActivityModal" style="display:none;">
+    <div class="staff-modal-card">
+      <div class="staff-modal-head">
+        <div>
+          <h3 id="staffModalTitle">Log activity</h3>
+          <p class="muted" id="staffModalSub">Update order handover progress</p>
+        </div>
+        <button class="modal-close" id="staffModalClose" type="button">×</button>
+      </div>
+
+      <form id="staffActivityForm" class="staff-form" enctype="multipart/form-data">
+        <input type="hidden" id="activityOrderId" />
+        <input type="hidden" id="activityKey" />
+
+        <div class="staff-order-brief" id="staffModalOrderBrief"></div>
+
+        <label id="issueCodeWrap" style="display:none;">
+          <span>Issue type</span>
+          <select id="issueCodeField">
+            <option value="">Select issue type</option>
+            <option value="receiver_unreachable">Receiver unreachable</option>
+            <option value="address_issue">Address / landmark issue</option>
+            <option value="customer_rescheduled">Customer requested reschedule</option>
+            <option value="cash_mismatch">Cash collection mismatch</option>
+            <option value="plant_handling_issue">Plant handling / damage issue</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+
+        <label id="recipientWrap" style="display:none;">
+          <span>Receiver / recipient name</span>
+          <input type="text" id="recipientNameField" placeholder="Who received the plants?" />
+        </label>
+
+        <label id="cashWrap" style="display:none;">
+          <span>Cash collected (LKR)</span>
+          <input type="number" id="cashCollectedField" min="0" step="1" placeholder="0" />
+        </label>
+
+        <label>
+          <span>Note</span>
+          <textarea id="activityNoteField" placeholder="Add a short field update for the admin panel and customer timeline"></textarea>
+        </label>
+
+        <label>
+          <span>Proof photo / PDF (optional)</span>
+          <input type="file" id="proofPhotoField" accept="image/jpeg,image/png,image/webp,application/pdf" />
+        </label>
+
+        <div class="staff-modal-actions">
+          <button class="btn btn-outline" id="staffModalCancel" type="button">Cancel</button>
+          <button class="btn" type="submit">Save activity</button>
+        </div>
+        <p class="staff-error" id="staffActivityError"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/delivery-staff.js"></script>
+</body>
+</html>
