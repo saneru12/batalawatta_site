@@ -5,7 +5,7 @@ const CATEGORIES = ["All", "Plants", "Harvest", "Nursery", "Customers"];
 
 const GALLERY_ITEMS = [
   // Plants
-  { id: "p1", title: "Rose Plant", category: "Plants", tags: ["rose", "flower"], src: "https://picsum.photos/seed/rose-plant/1200/800" },
+  { id: "p1", title: "Rose Plant", category: "Plants", tags: ["rose", "flower"], src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUJMMa2GtG4Mpt8smi1T7zp9bGInlxGeL3Zg&s" },
   { id: "p2", title: "Indoor Green Plant", category: "Plants", tags: ["indoor", "green"], src: "https://picsum.photos/seed/indoor-plant/1200/800" },
   { id: "p3", title: "Succulents", category: "Plants", tags: ["succulent"], src: "https://picsum.photos/seed/succulents/1200/800" },
 
