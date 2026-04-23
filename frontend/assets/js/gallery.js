@@ -6,20 +6,20 @@ const CATEGORIES = ["All", "Plants", "Harvest", "Nursery", "Customers"];
 const GALLERY_ITEMS = [
   // Plants
   { id: "p1", title: "Rose Plant", category: "Plants", tags: ["rose", "flower"], src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUJMMa2GtG4Mpt8smi1T7zp9bGInlxGeL3Zg&s" },
-  { id: "p2", title: "Indoor Green Plant", category: "Plants", tags: ["indoor", "green"], src: "https://picsum.photos/seed/indoor-plant/1200/800" },
-  { id: "p3", title: "Succulents", category: "Plants", tags: ["succulent"], src: "https://picsum.photos/seed/succulents/1200/800" },
+  { id: "p2", title: "Indoor Green Plant", category: "Plants", tags: ["indoor", "green"], src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxcgX621kXNjGDiXnDseBpOW3QnNsVmy3jfQ&s" },
+  { id: "p3", title: "Succulents", category: "Plants", tags: ["succulent"], src: "https://www.gardenia.net/wp-content/uploads/2023/05/succulents.webp" },
 
   // Harvest
-  { id: "h1", title: "Fresh Harvest Basket", category: "Harvest", tags: ["harvest", "fresh"], src: "https://picsum.photos/seed/harvest-basket/1200/800" },
-  { id: "h2", title: "Fruit Harvest", category: "Harvest", tags: ["fruits", "harvest"], src: "https://picsum.photos/seed/fruit-harvest/1200/800" },
+  { id: "h1", title: "Fresh Harvest Basket", category: "Harvest", tags: ["harvest", "fresh"], src: "https://static.vecteezy.com/system/resources/previews/072/212/629/large_2x/fresh-harvest-basket-vibrant-fruits-and-vegetables-on-marble-countertop-photo.jpg" },
+  { id: "h2", title: "Fruit Harvest", category: "Harvest", tags: ["fruits", "harvest"], src: "https://www.trees.com/wp-content/uploads/2020/11/Fruit-Harvest-Guide.jpg" },
 
   // Nursery
-  { id: "n1", title: "Nursery Area", category: "Nursery", tags: ["nursery"], src: "https://picsum.photos/seed/nursery-area/1200/800" },
-  { id: "n2", title: "Potting Setup", category: "Nursery", tags: ["pots", "soil"], src: "https://picsum.photos/seed/potting/1200/800" },
+  { id: "n1", title: "Nursery Area", category: "Nursery", tags: ["nursery"], src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6zN84XCOY7weFHlPHWpICwUk9Fca3qYMEeQ&s" },
+  { id: "n2", title: "Potting Setup", category: "Nursery", tags: ["pots", "soil"], src: "https://cdn.shopify.com/s/files/1/0862/7827/5406/files/indoor-gardening-supplies-potting-setup.jpg?v=1738599988" },
 
   // Customers
-  { id: "c1", title: "Customer Garden", category: "Customers", tags: ["customer", "garden"], src: "https://picsum.photos/seed/customer-garden/1200/800" },
-  { id: "c2", title: "Balcony Plants", category: "Customers", tags: ["balcony", "indoor"], src: "https://picsum.photos/seed/balcony-plants/1200/800" },
+  { id: "c1", title: "Customer Garden", category: "Customers", tags: ["customer", "garden"], src: "https://www.gardencentermag.com/remote/aHR0cHM6Ly9naWVjZG4uYmxvYi5jb3JlLndpbmRvd3MubmV0L2ZpbGV1cGxvYWRzL3B1YmxpY2F0aW9ucy8xMy9pc3N1ZXMvMTAzNDcwL2FydGljbGVzL2ltYWdlcy9nYXJkZW5fZGVzaWduX3RpcHMuanBn.MbF5DHPy2bY.jpg?format=webp" },
+  { id: "c2", title: "Balcony Plants", category: "Customers", tags: ["balcony", "indoor"], src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyh0l-R_zndtLf7dwDojQ12bR4AdfJlupdig&s" },
 ];
 
 let activeCategory = "All";
